@@ -1,9 +1,15 @@
-import 'package:event_finder_app/core/theme/app_pallete.dart';
+import 'package:event_finder_app/core/secrets/secretsbase.dart';
 import 'package:event_finder_app/core/theme/theme.dart';
-import 'package:event_finder_app/features/auth/presentation/pages/signup_page.dart';
+import 'package:event_finder_app/features/auth/presentation/pages/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:event_finder_app/features/auth/presentation/widget/routes.dart';
+import 'package:event_finder_app/features/auth/presentation/widget/theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final supabase = await Supabase.initialize(
+      url: SecretBase.supabaseUrl, anonKey: SecretBase.key);
   runApp(const MyApp());
 }
 
@@ -29,12 +35,16 @@ class _MyMainState extends State<MyMain> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: AppTheme.lightThemeMode,
+      // theme: AppTheme.lightThemeMode,
+      theme: AppThemes.lightTheme(context),
       // ThemeData(
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,
       // ),
-      home: SignUpPage(),
+      // home: const SignInScreen(),
+      initialRoute: SignInScreen.routeName,
+      routes:routes ,
+      
     );
   }
 }
