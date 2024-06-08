@@ -46,6 +46,7 @@ class _MyMainState extends State<MyMain> {
       title: 'Flutter Demo',
       // theme: AppTheme.lightThemeMode,
       theme: AppThemes.lightTheme(context),
+      
       // ThemeData(
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,

@@ -17,6 +17,7 @@ class SignForm extends StatefulWidget {
   const SignForm({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SignFormState createState() => _SignFormState();
 }
 
@@ -49,22 +50,15 @@ class _SignFormState extends State<SignForm> {
       listener: (context, state) {
         if (state is AuthFailure) {
           showSnackBar(context, state.message);
-        } else if (state is AuthInvalidPassword) {
-          showSnackBar(context, 'Invalid password. Please try again.');
         }
+        // else if (state is AuthInvalidPassword) {
+        //   showSnackBar(context, 'Invalid password. Please try again.');
+        // }
       },
       builder: (context, state) {
         if (state is AuthLoading) {
           return const MyLoader();
-        } else if (state is AuthSuccess) {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const HomePage(),
-            ),
-            (Route<dynamic> route) => false,
-          );
-        }
+        } 
         return Form(
           key: _formKey,
           child: Column(
@@ -180,6 +174,15 @@ class _SignFormState extends State<SignForm> {
                     //     builder: (context) => const MyHomePage(),
                     //   ),
                     // );
+                    if (state is AuthSuccess) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                        (Route<dynamic> route) => false,
+                      );
+                    }
                   }
                 },
                 child: const Text("Continue"),

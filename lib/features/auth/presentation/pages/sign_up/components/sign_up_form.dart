@@ -15,6 +15,7 @@ class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SignUpFormState createState() => _SignUpFormState();
 }
 
@@ -54,6 +55,15 @@ class _SignUpFormState extends State<SignUpForm> {
         if (state is AuthLoading) {
           return const MyLoader();
         }
+        // else if(state is AuthSuccess){
+        //     Navigator.pushAndRemoveUntil(
+        //       context,
+        //       MaterialPageRoute(
+        //         builder: (context) => const SignInScreen(),
+        //       ),
+        //       (Route<dynamic> route) => false,
+        //     );
+        // }
         return Form(
           key: _formKey,
           child: Column(
